@@ -16,10 +16,19 @@
                     <a class="nav-link" href="#">Link 2</a>
                 </li>
             </ul>
-            <form class="d-flex">
+
+            <form class="d-flex" style="margin-left: auto; margin-right: auto; width: 350px;">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
+                <!-- Search Icon Button -->
+                <button class="btn btn-outline-success" type="submit">
+                    <i class="fa fa-search"></i>
+                </button>
             </form>
+
+            <span class="navbar-text d-flex gap-2 nav-item align-items-center">
+                Welcome, {{ globalUser?.email }}
+                <button class="btn btn-link nav-link ms-1" (click)="onLogout()">Logout</button>
+            </span>
         </div>
     </div>
 </nav>

@@ -11,6 +11,8 @@ import { HeaderComponent } from './layouts/header/header.component';
 import { FooterComponent } from './layouts/footer/footer.component';
 import { AppRoutingModule } from './app.routes';
 import { RegisterComponent } from './auth/register/register.component';
+import { LoginComponent } from './auth/login/login.component';
+import { ShelvesComponent } from './shelves/shelves/shelves.component';
 
 export function tokenGetter() {
   return localStorage.getItem('accessToken');
@@ -21,7 +23,9 @@ export function tokenGetter() {
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    RegisterComponent
+    RegisterComponent,
+    LoginComponent,
+    ShelvesComponent
   ],
   imports: [
     BrowserModule,
