@@ -12,10 +12,10 @@ export class ApiService {
   constructor(private http: HttpClient) { }
 
   get<T>(url: string): Observable<T> {
-    return this.http.get<T>(`${this.apiUrl}/api/${url}`);
+    return this.http.get<T>(`${this.apiUrl}${url}`);
   }
 
   post<T>(url: string, data: any): Observable<T> {
-    return this.http.post<T>(`${this.apiUrl}/api/${url}`, data);
+    return this.http.post<T>(`${this.apiUrl}${url}`, data);
   }
 }

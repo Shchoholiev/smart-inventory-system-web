@@ -6,10 +6,11 @@ import { AppComponent } from './app.component';
 
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { JwtInterceptor } from './auth/jwt.interceptor';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './layouts/header/header.component';
 import { FooterComponent } from './layouts/footer/footer.component';
 import { AppRoutingModule } from './app.routes';
+import { RegisterComponent } from './auth/register/register.component';
 
 export function tokenGetter() {
   return localStorage.getItem('accessToken');
@@ -20,11 +21,13 @@ export function tokenGetter() {
     AppComponent,
     HeaderComponent,
     FooterComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     JwtModule.forRoot({
       jwtOptionsProvider: {
