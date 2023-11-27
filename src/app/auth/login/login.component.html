@@ -1,0 +1,46 @@
+<div class="container mt-3">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between">
+                    <span>Login</span>
+                    <span>Recipes Manager Admin</span>
+                </div>
+                <div class="card-body">
+                    <form (ngSubmit)="onSubmit()" #form="ngForm">
+                        <div class="form-group mb-3">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" id="email" name="email"
+                                [(ngModel)]="loginModel.email" email>
+                            <div *ngIf="form.controls['email']?.invalid && (form.controls['email'].dirty || form.controls['email'].touched)"
+                                class="text-danger">
+                                <div *ngIf="form.controls['email'].errors?.['email']">Invalid email format</div>
+                            </div>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="phone">Phone</label>
+                            <input type="tel" class="form-control" id="phone" name="phone"
+                                [(ngModel)]="loginModel.phone" pattern="[0-9]{10}">
+                            <div *ngIf="form.controls['phone']?.invalid && (form.controls['phone'].dirty || form.controls['phone'].touched)"
+                                class="text-danger">
+                                <div *ngIf="form.controls['phone'].errors?.['pattern']">Invalid phone format</div>
+                            </div>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="password">Password</label>
+                            <input type="password" class="form-control" id="password" name="password"
+                                [(ngModel)]="loginModel.password" required>
+                            <div *ngIf="form.controls['password']?.invalid && (form.controls['password'].dirty || form.controls['password'].touched)"
+                                class="text-danger">
+                                <div *ngIf="form.controls['password'].errors?.['required']">Password is required</div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary"
+                            [disabled]="!form.valid || (!loginModel.email && !loginModel.phone)">Login</button>
+                        <div *ngIf="loginError" class="text-danger mt-2">{{ loginError }}</div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
