@@ -17,6 +17,7 @@ import { GroupCreationComponent } from './groups/group-creation/group-creation.c
 import { GroupComponent } from './groups/group/group.component';
 import { DevicesComponent } from './devices/devices/devices.component';
 import { PaginationComponent } from './pagination/pagination.component';
+import { ShelfDetailComponent } from './shelves/shelf/shelf.component';
 
 export function tokenGetter() {
   return localStorage.getItem('accessToken');
@@ -33,7 +34,8 @@ export function tokenGetter() {
     GroupCreationComponent,
     GroupComponent,
     DevicesComponent,
-    PaginationComponent
+    PaginationComponent,
+    ShelfDetailComponent
   ],
   imports: [
     BrowserModule,

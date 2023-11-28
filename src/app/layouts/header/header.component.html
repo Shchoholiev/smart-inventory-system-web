@@ -1,6 +1,8 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">Smart Inventory System</a>
+        <a class="navbar-brand" href="#">
+            <i class="fa fa-boxes-stacked"></i> Smart Inventory System
+        </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -12,11 +14,11 @@
                 <li class="nav-item" *ngIf="!isUserInGroup()">
                     <a class="nav-link active" href="/creategroup">Create Group</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" *ngIf="isUserInGroup() && this.globalUser?.roles?.includes('Owner')">
                     <a class="nav-link" href="/devices">Devices</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Link 2</a>
+                    <a class="nav-link" href="/shelves">Shelves</a>
                 </li>
             </ul>
 
