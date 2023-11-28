@@ -1,0 +1,19 @@
+.badge-success {
+    background-color: #28a745; /* Green for available items */
+  }
+  
+  .badge-danger {
+    background-color: #dc3545; /* Red for taken items */
+  }
+  
+.loading-spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    /* height: 100vh; */
+
+    font-size: 1.5em;
+    margin-top: 30px;
+}
+  
