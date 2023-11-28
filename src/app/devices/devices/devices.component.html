@@ -1,0 +1,35 @@
+<div class="container my-3">
+    <h2 class="mb-4">Your Devices</h2>
+    <div class="row mb-4">
+        <div class="col d-flex gap-3">
+            <input type="text" class="form-control" placeholder="Enter device ID" [(ngModel)]="deviceIdToActivate">
+            <button class="btn btn-primary" style="width: 190px;" (click)="activateDevice()">
+                <i class="fas fa-power-off me-1"></i>
+                Activate Device
+            </button>
+        </div>
+    </div>
+    <hr />
+    <div class="col d-flex flex-column" *ngIf="devices.length">
+        <div class="col d-flex flex-column gap-2">
+            <div class="card" *ngFor="let device of devices; let i = index">
+                <div class="card-body d-flex justify-content-between align-items-center">
+                    <div *ngIf="!device.isEditing">
+                        <h5 class="card-title m-0">{{ device.name }}</h5>
+                        <p class="m-0 text-secondary">{{ getDeviceTypeString(device.type) }}</p>
+                    </div>
+                    <div *ngIf="device.isEditing">
+                        <input type="text" class="form-control" style="min-width: 250px;" [(ngModel)]="device.name" placeholder="Enter name">
+                    </div>
+                    <button class="btn btn-primary" [class.btn-success]="device.isEditing" (click)="toggleEdit(device)">
+                        <i class="fas" [class.fa-edit]="!device.isEditing" [class.fa-save]="device.isEditing"></i>
+                    </button>
+                </div>
+            </div>    
+        </div>
+        <div class="d-flex justify-content-center">
+            <app-pagination class="my-3" [currentPage]="currentPage" [totalPages]="totalPages" (pageChange)="setPage(+$event)"></app-pagination>
+        </div>
+    </div>
+    <div class="text-secondary" *ngIf="!devices.length">No devices found.</div>
+</div>
