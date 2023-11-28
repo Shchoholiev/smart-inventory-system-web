@@ -1,0 +1,23 @@
+<div class="container my-3">
+    <h2 class="mb-4">Your Devices</h2>
+    <div class="row mb-4">
+        <div class="col d-flex gap-3">
+            <input type="text" class="form-control" placeholder="Enter device ID" [(ngModel)]="deviceIdToActivate">
+            <button class="btn btn-primary" style="width: 190px;" (click)="activateDevice()">
+                <i class="fas fa-power-off me-1"></i>
+                Activate Device
+            </button>
+        </div>
+    </div>
+    <hr />
+    <div class="col d-flex flex-column gap-3" *ngIf="devices.length">
+        <div class="card" *ngFor="let device of devices">
+            <div class="card-body d-flex gap-3">
+                <h5 class="card-title m-0">{{ device.name }}</h5>
+                <p class="m-0">Type: {{ getDeviceTypeString(device.type) }}</p>
+            </div>
+        </div>
+        
+    </div>
+    <div class="text-secondary" *ngIf="!devices.length">No devices found.</div>
+</div>

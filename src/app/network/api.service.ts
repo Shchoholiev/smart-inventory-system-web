@@ -23,6 +23,10 @@ export class ApiService {
     return this.http.put<T>(`${this.apiUrl}${url}`, data);
   }
 
+  patch<T>(url: string, data: any): Observable<T> {
+    return this.http.patch<T>(`${this.apiUrl}${url}`, data);
+  }
+
   delete(url: string) {
     return this.http.delete(`${this.apiUrl}${url}`);
   }
