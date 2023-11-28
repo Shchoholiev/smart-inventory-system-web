@@ -20,15 +20,11 @@ export class LoginComponent {
       .subscribe({
         next: (response) => {
           console.log('Login successful:', response);
-          this.router.navigate(['/main']);
+          this.router.navigate(['/shelves']);
         },
         error: (error) => {
-          console.error('Login failed:', error);
-          if (error.status === 500) {
-            this.loginError = 'Server error. Please try again later.';
-          } else {
-            this.loginError = 'Invalid email, phone, or password.';
-          }
+          console.log(error);
+          this.loginError = error.error.message;
         }
       });
   }

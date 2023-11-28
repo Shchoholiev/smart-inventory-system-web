@@ -13,6 +13,8 @@ import { AppRoutingModule } from './app.routes';
 import { RegisterComponent } from './auth/register/register.component';
 import { LoginComponent } from './auth/login/login.component';
 import { ShelvesComponent } from './shelves/shelves/shelves.component';
+import { GroupCreationComponent } from './groups/group-creation/group-creation.component';
+import { GroupComponent } from './groups/group/group.component';
 
 export function tokenGetter() {
   return localStorage.getItem('accessToken');
@@ -25,7 +27,9 @@ export function tokenGetter() {
     FooterComponent,
     RegisterComponent,
     LoginComponent,
-    ShelvesComponent
+    ShelvesComponent,
+    GroupCreationComponent,
+    GroupComponent
   ],
   imports: [
     BrowserModule,

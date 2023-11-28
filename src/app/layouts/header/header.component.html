@@ -6,8 +6,11 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                <li class="nav-item" *ngIf="isUserInGroup() && this.globalUser?.roles?.includes('Owner')">
+                    <a class="nav-link active" href="/group">Group</a>
+                </li>
+                <li class="nav-item" *ngIf="!isUserInGroup()">
+                    <a class="nav-link active" href="/creategroup">Create Group</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Link 1</a>
@@ -19,7 +22,6 @@
 
             <form class="d-flex" style="margin-left: auto; margin-right: auto; width: 350px;">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <!-- Search Icon Button -->
                 <button class="btn btn-outline-success" type="submit">
                     <i class="fa fa-search"></i>
                 </button>
