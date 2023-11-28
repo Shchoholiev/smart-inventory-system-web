@@ -3,6 +3,7 @@ import { ApiService } from '../network/api.service';
 import { Group } from './group.model';
 import { map } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
+import { User } from '../users/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -18,10 +19,34 @@ export class GroupsService {
     return this.apiService
       .post<Group>('/groups', group)
       .pipe(
-        map(response => {
+        map(group => {
             return this.authService.refreshTokens();
           }
         )
       );
+  }
+
+  getGroupById(groupId: string) {
+    return this.apiService.get<Group>(`/groups/${groupId}`);
+  }
+
+  updateGroup(groupId: string, group: Group) {
+    return this.apiService.put<Group>(`/groups/${groupId}`, group);
+  }
+
+  addUserToGroup(groupId: string, userId: string) {
+    return this.apiService.post<Group>(`/groups/${groupId}/users/${userId}`, {});
+  }
+
+  removeUserFromGroup(groupId: string, userId: string) {
+    return this.apiService.delete(`/groups/${groupId}/users/${userId}`);
+  }
+
+  leaveGroup(groupId: string) {
+    return this.apiService.delete(`/groups/${groupId}/users`);
+  }
+
+  getUsersByGroupId(groupId: string) {
+    return this.apiService.get<User[]>(`/groups/${groupId}/users`);
   }
 }

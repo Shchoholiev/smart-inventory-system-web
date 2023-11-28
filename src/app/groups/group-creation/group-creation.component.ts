@@ -28,7 +28,7 @@ export class GroupCreationComponent {
         .subscribe(
           {
             next: (group) => {
-              this.router.navigate(['']);
+              this.router.navigate(['/group']);
             },
             error: (error) => {
               console.log(error);
@@ -36,6 +36,6 @@ export class GroupCreationComponent {
               this.error = error.error.message;
             }
           }
-        )
+        );
   }
 }

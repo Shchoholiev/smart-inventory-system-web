@@ -8,6 +8,9 @@ import { Router } from '@angular/router';
 import { Login } from './login/login.model';
 import { Tokens } from './tokens.model';
 import { Register } from './register/register.model';
+import { UsersService } from '../users/users.service';
+import { switchMap } from 'rxjs/operators';
+
 
 @Injectable({
     providedIn: 'root'
@@ -16,38 +19,35 @@ export class AuthService {
     private globalUserSubject = new BehaviorSubject<GlobalUser | null>(null);
     globalUser$ = this.globalUserSubject.asObservable();
 
-    constructor(private apiService: ApiService, private jwtHelper: JwtHelperService, private router: Router) { }
+    constructor(
+        private apiService: ApiService, 
+        private jwtHelper: JwtHelperService, 
+        private router: Router,
+        private usersService: UsersService
+    ) { }
 
     login(login: Login): Observable<any> {
         return this.apiService
             .post<Tokens>('/users/login', login)
             .pipe(
-                map(tokens => {
-                    localStorage.setItem('accessToken', tokens.accessToken);
-                    localStorage.setItem('refreshToken', tokens.refreshToken);
-
-                    const globalUser = this.createGlobalUserFromToken(tokens.accessToken);
-                    this.globalUserSubject.next(globalUser);
-
-                    return true;
-                }
-            ));
+                switchMap(tokens => {
+                    return this.saveTokens(tokens).pipe(
+                        map(() => true)
+                    );
+                })
+            );
     }
 
     register(register: Register): Observable<any> {
         return this.apiService
             .post<Tokens>('/users/register', register)
             .pipe(
-                map(tokens => {
-                    localStorage.setItem('accessToken', tokens.accessToken);
-                    localStorage.setItem('refreshToken', tokens.refreshToken);
-
-                    const globalUser = this.createGlobalUserFromToken(tokens.accessToken);
-                    this.globalUserSubject.next(globalUser);
-
-                    return true;
-                }
-            ));
+                switchMap(tokens => {
+                    return this.saveTokens(tokens).pipe(
+                        map(() => true)
+                    );
+                })
+            );
     }
 
     logout() {
@@ -69,13 +69,7 @@ export class AuthService {
             .post<Tokens>('/tokens/refresh', tokens)
             .pipe(
                 map(tokens => {
-                    localStorage.setItem('accessToken', tokens.accessToken);
-                    localStorage.setItem('refreshToken', tokens.refreshToken);
-
-                    const globalUser = this.createGlobalUserFromToken(tokens.accessToken);
-                    this.globalUserSubject.next(globalUser);
-
-                    return tokens;
+                    return this.saveTokens(tokens);
                 }
             ));
     }
@@ -106,6 +100,21 @@ export class AuthService {
 
             return of(true);
         }
+    }
+
+    private saveTokens(tokens: Tokens) {
+        localStorage.setItem('accessToken', tokens.accessToken);
+        localStorage.setItem('refreshToken', tokens.refreshToken);
+
+        const globalUser = this.createGlobalUserFromToken(tokens.accessToken);
+        this.globalUserSubject.next(globalUser);
+
+        return this.usersService.getUser(globalUser.email ?? globalUser.phone).pipe(
+            switchMap(user => {
+                localStorage.setItem('groupId', user.groupId ?? '');
+                return of(tokens);
+            })
+        );
     }
 
     private createGlobalUserFromToken(accessToken: string): GlobalUser {

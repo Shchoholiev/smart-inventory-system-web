@@ -5,6 +5,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { AuthGuard } from './auth/auth.guard';
 import { ShelvesComponent } from './shelves/shelves/shelves.component';
 import { GroupCreationComponent } from './groups/group-creation/group-creation.component';
+import { GroupComponent } from './groups/group/group.component';
 
 const routes: Routes = [
     { path: '', redirectTo: '/shelves', pathMatch: 'full' },
@@ -12,8 +13,7 @@ const routes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'shelves', component: ShelvesComponent, canActivate: [AuthGuard] },
     { path: 'creategroup', component: GroupCreationComponent, canActivate: [AuthGuard] },
-    // { path: 'logs', component: ApplicationLogsComponent, canActivate: [AuthGuard] },
-    // { path: 'open-ai-logs', component: OpenAiLogsComponent, canActivate: [AuthGuard] }
+    { path: 'group', component: GroupComponent, canActivate: [AuthGuard] },
 ];
 
 

@@ -1,5 +1,4 @@
-export class Group {
+export class Role {
     public id: string = '';
     public name: string = '';
-    public description?: string
 }
