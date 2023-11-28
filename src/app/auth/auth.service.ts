@@ -64,11 +64,10 @@ export class AuthService {
             accessToken: accessToken,
             refreshToken: refreshToken
         }
-
         return this.apiService
             .post<Tokens>('/tokens/refresh', tokens)
             .pipe(
-                map(tokens => {
+                switchMap(tokens => {
                     return this.saveTokens(tokens);
                 }
             ));

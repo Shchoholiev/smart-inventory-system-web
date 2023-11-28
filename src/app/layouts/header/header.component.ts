@@ -16,6 +16,10 @@ export class HeaderComponent {
     });
   }
 
+  public isUserInGroup(): boolean {
+    return !!localStorage.getItem('groupId');
+  }
+
   public onLogout(): void {
     this.authService.logout();
   }

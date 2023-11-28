@@ -6,8 +6,11 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item" *ngIf="this.globalUser?.roles?.includes('Owner')">
-                    <a class="nav-link active" href="group">Group</a>
+                <li class="nav-item" *ngIf="isUserInGroup() && this.globalUser?.roles?.includes('Owner')">
+                    <a class="nav-link active" href="/group">Group</a>
+                </li>
+                <li class="nav-item" *ngIf="!isUserInGroup()">
+                    <a class="nav-link active" href="/creategroup">Create Group</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Link 1</a>

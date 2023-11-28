@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from '../network/api.service';
 import { Group } from './group.model';
-import { map } from 'rxjs';
+import { map, switchMap } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
 import { User } from '../users/user.model';
 
@@ -19,7 +19,7 @@ export class GroupsService {
     return this.apiService
       .post<Group>('/groups', group)
       .pipe(
-        map(group => {
+        switchMap(group => {
             return this.authService.refreshTokens();
           }
         )
@@ -43,7 +43,11 @@ export class GroupsService {
   }
 
   leaveGroup(groupId: string) {
-    return this.apiService.delete(`/groups/${groupId}/users`);
+    return this.apiService.delete(`/groups/${groupId}/users`)
+    .pipe(map((response) => {
+      localStorage.removeItem('groupId');
+      return response;
+    }));
   }
 
   getUsersByGroupId(groupId: string) {
