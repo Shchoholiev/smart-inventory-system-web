@@ -4,4 +4,5 @@ export class Shelf {
     isLitUp: boolean = false;
     groupId: string = '';
     deviceId: string = '';
+    isEditing: boolean = false;
 }
