@@ -3,4 +3,5 @@ export class Item {
     name: string = '';
     description?: string;
     isTaken: boolean = false;
+    shelfId: string = '';
 }
