@@ -5,6 +5,8 @@ export class Device {
     public guid: string = '';
     public groupId?: string = '';
     public isActive: boolean = false;
+
+    public isEditing: boolean = false;
 }
 
 export enum DeviceType {

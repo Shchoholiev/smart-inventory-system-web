@@ -11,7 +11,8 @@ export class DevicesComponent {
   devices: Device[] = [];
   deviceIdToActivate = '';
   currentPage = 1;
-  pageSize = 10;
+  pageSize = 8;
+  totalPages = 1;
   groupId;
 
   constructor(private devicesService: DevicesService) { 
@@ -19,22 +20,23 @@ export class DevicesComponent {
   }
 
   ngOnInit(): void {
-    this.loadDevices();
+    this.setPage(this.currentPage);
   }
 
-  loadDevices(): void {
-    this.devicesService.getDevices(this.currentPage, this.pageSize, this.groupId)
+  setPage(page: number): void {
+    this.devicesService.getDevices(page, this.pageSize, this.groupId)
       .subscribe(devices => {
         this.devices = devices.items;
+        this.totalPages = devices.totalPages;
+        this.currentPage = devices.pageNumber;
       });
   }
 
   activateDevice(): void {
     this.devicesService.activateDevice(this.deviceIdToActivate, this.groupId)
       .subscribe((response) => {
-        console.log(response);
-        
-        this.loadDevices();
+        this.currentPage = 1;
+        this.setPage(this.currentPage);
         this.deviceIdToActivate = '';
       });
   }
@@ -48,5 +50,17 @@ export class DevicesComponent {
       default:
         return 'Unknown';
     }
+  }
+
+  toggleEdit(device: any): void {
+    if (device.isEditing) {
+      this.devicesService.updateDevice(device.id, device)
+        .subscribe(() => {
+          device.isEditing = false;
+        });
+      return;
+    }
+
+    device.isEditing = true;
   }
 }
