@@ -1,0 +1,34 @@
+<div class="container">
+    <div *ngIf="isLoading" class="loading-spinner text-secondary">
+        <i class="fas fa-spinner fa-spin"></i> Loading...
+    </div>
+
+    <div *ngIf="!isLoading" class="d-flex flex-column gap-2 my-3">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Roles</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let user of users">
+                    <td>{{ user.name }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.phone }}</td>
+                    <td>{{ formatRoles(user.roles) }}</td>
+                    <td>
+                        <a href="/admin/users/{{ user.id }}" class="btn btn-primary">Details</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="d-flex justify-content-center">
+            <app-pagination class="my-3" [currentPage]="currentPage" [totalPages]="totalPages" (pageChange)="setPage(+$event)"></app-pagination>
+        </div>
+    </div>
+</div>
