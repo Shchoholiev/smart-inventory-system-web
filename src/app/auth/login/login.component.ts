@@ -20,7 +20,7 @@ export class LoginComponent {
       .subscribe({
         next: (response) => {
           console.log('Login successful:', response);
-          this.router.navigate(['/shelves']);
+          this.router.navigate(['/items']);
         },
         error: (error) => {
           console.log(error);

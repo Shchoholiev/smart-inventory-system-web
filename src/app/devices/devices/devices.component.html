@@ -21,9 +21,14 @@
                     <div *ngIf="device.isEditing">
                         <input type="text" class="form-control" style="min-width: 250px;" [(ngModel)]="device.name" placeholder="Enter name">
                     </div>
-                    <button class="btn btn-primary" [class.btn-success]="device.isEditing" (click)="toggleEdit(device)">
-                        <i class="fas" [class.fa-edit]="!device.isEditing" [class.fa-save]="device.isEditing"></i>
-                    </button>
+                    <div class="d-flex gap-3">
+                        <button *ngIf="isAccessPoint(device)" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#historyModal" (click)="showHistory(device.id)">
+                            <i class="fas fa-history"></i> Show History
+                        </button>
+                        <button class="btn btn-primary" [class.btn-success]="device.isEditing" (click)="toggleEdit(device)">
+                            <i class="fas" [class.fa-edit]="!device.isEditing" [class.fa-save]="device.isEditing"></i>
+                        </button>
+                    </div>
                 </div>
             </div>    
         </div>
@@ -32,4 +37,36 @@
         </div>
     </div>
     <div class="text-secondary" *ngIf="!devices.length">No devices found.</div>
+
+    <div class="modal" tabindex="-1" id="historyModal" role="dialog">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Device History</h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close" (click)="closeHistory()">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <table class="table" *ngIf="historyData && historyData.length">
+                        <thead>
+                            <tr>
+                                <th>Scan Type</th>
+                                <th>Result</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let scan of historyData">
+                                <td>{{ getScanTypeText(scan.scanType) }}</td>
+                                <td>{{ scan.result }}</td>
+                                <td>{{ scan.createdDateUtc | date: 'HH:mm:ss - dd/MM/yyyy' }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p class="text-secondary" *ngIf="!historyData || !historyData.length">No history.</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

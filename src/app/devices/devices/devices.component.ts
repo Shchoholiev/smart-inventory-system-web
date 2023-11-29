@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { DevicesService } from '../devices.service';
 import { Device, DeviceType } from '../device.model';
+import { ScanType } from '../scan-history.model';
 
 @Component({
   selector: 'app-devices',
@@ -14,6 +15,8 @@ export class DevicesComponent {
   pageSize = 8;
   totalPages = 1;
   groupId;
+  showingHistory = false;
+  historyData: any;
 
   constructor(private devicesService: DevicesService) { 
     this.groupId = localStorage.getItem('groupId') || '';
@@ -62,5 +65,36 @@ export class DevicesComponent {
     }
 
     device.isEditing = true;
+  }
+
+  showHistory(deviceId: string): void {
+    this.devicesService.getScansHistory(deviceId, 1, 50).subscribe({
+        next: (page) => {
+            this.historyData = page;
+            this.showingHistory = true;
+        },
+        error: (error) => console.error('Error fetching history', error)
+    });
+  }
+
+  closeHistory(): void {
+      this.showingHistory = false;
+  }
+
+  getScanTypeText(scanType: ScanType): string {
+    switch (scanType) {
+        case ScanType.Object:
+            return 'Image Recognition';
+        case ScanType.QRCode:
+            return 'QR Code Scan';
+        case ScanType.Barcode:
+            return 'Barcode Scan';
+        default:
+            return 'Unknown';
+    }
+  }
+
+  isAccessPoint(device: Device): boolean {
+    return device.type === DeviceType.AccessPoint;
   }
 }

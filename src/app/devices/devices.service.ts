@@ -34,4 +34,8 @@ export class DevicesService {
         isActive: true
       });
   }
+
+  getScansHistory(deviceId: string, page: number, size: number) {
+    return this.apiService.get<any>(`/access-points/${deviceId}/scans-history?page=${page}&size=${size}`);
+  }
 }

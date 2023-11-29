@@ -20,7 +20,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/shelves">Shelves</a>
                 </li>
-                <li class="nav-item" *ngIf="isUserInGroup() && this.globalUser?.roles?.includes('Owner')">
+                <li class="nav-item" *ngIf="isUserInGroup() && this.globalUser?.roles?.includes('Admin')">
                     <a class="nav-link" href="/admin/users">Users</a>
                 </li>
             </ul>
