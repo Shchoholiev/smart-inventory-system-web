@@ -1,6 +1,6 @@
 <div class="container">
     <div *ngIf="isLoading" class="loading-spinner text-secondary">
-        <i class="fas fa-spinner fa-spin"></i> Loading...
+        <i class="fas fa-spinner fa-spin"></i> {{ 'LOADING' | translate }}
     </div>
 
     <div *ngIf="!isLoading" class="d-flex flex-column gap-2 my-3">
@@ -10,13 +10,13 @@
                     <h2 class="m-0">{{ item.name }}</h2>
                     <div class="d-flex gap-3">
                         <button class="btn btn-secondary" (click)="toggleShelfLight()">
-                            {{ shelf.isLitUp ? 'Turn Off Light' : 'Turn On Light' }}
+                            {{ shelf.isLitUp ? ('TURN_OFF_LIGHT' | translate) : ('TURN_ON_LIGHT' | translate) }}
                         </button>
                         <button class="btn btn-primary" (click)="toggleEdit()">
-                            <i class="fas fa-edit"></i> Edit
+                            <i class="fas fa-edit"></i> {{ 'EDIT' | translate }}
                         </button>
                         <button class="btn btn-danger" (click)="deleteItem()">
-                            <i class="fas fa-trash-alt"></i>
+                            <i class="fas fa-trash-alt"></i> {{ 'DELETE' | translate }}
                         </button>
                     </div>
                 </div>
@@ -26,16 +26,17 @@
         <div class="row my-2" *ngIf="!isEditing">
             <div class="col">
                 <p>{{ item.description }}</p>
-                <p>Status: {{ item.isTaken ? 'Taken' : 'Available' }}</p>
+                <p>{{ 'STATUS' | translate }}: {{ item.isTaken ? ('TAKEN' | translate) : ('AVAILABLE' | translate) }}</p>
             </div>
         </div>
+
         <div class="row" *ngIf="isEditing">
             <div class="col d-flex gap-2 flex-column mb-3">
                 <input type="text" [(ngModel)]="item.name" class="form-control">
                 <textarea [(ngModel)]="item.description" class="form-control"></textarea>
                 <div>
-                    <button class="btn btn-success" (click)="updateItem()">
-                        <i class="fas fa-check"></i> Update
+                    <button class="btn btn-success" style="white-space: nowrap;" (click)="updateItem()">
+                        <i class="fas fa-check"></i> {{ 'UPDATE' | translate }}
                     </button>
                 </div>
             </div>
@@ -44,10 +45,10 @@
 
         <div class="row">
             <div class="col d-flex align-items-center gap-3">
-                <button class="btn" style="width: 150px;" [ngClass]="{'btn-success': !item.isTaken, 'btn-warning': item.isTaken}" (click)="updateItemStatus()">
-                    {{ item.isTaken ? 'Put Back' : 'Take' }} Item
+                <button class="btn" style="white-space: nowrap;" [ngClass]="{'btn-success': !item.isTaken, 'btn-warning': item.isTaken}" (click)="updateItemStatus()">
+                    {{ item.isTaken ? ('PUT_BACK' | translate) : ('TAKE' | translate) }} {{ 'ITEM' | translate }}
                 </button>
-                <input type="text" [(ngModel)]="comment" class="form-control ml-2" placeholder="Optional comment">
+                <input type="text" [(ngModel)]="comment" class="form-control ml-2" placeholder="{{ 'OPTIONAL_COMMENT' | translate }}">
             </div>
         </div>
 
@@ -55,25 +56,25 @@
 
         <div class="row">
             <div class="col">
-                <h4>History</h4>
+                <h4>{{ 'HISTORY' | translate }}</h4>
                 <div class="d-flex flex-column gap-3" *ngIf="itemHistory.length">
                     <div class="card" *ngFor="let history of itemHistory">
                         <div class="card-body d-flex align-items-center gap-3">
                             <p class="card-text m-0 text-secondary">{{ getHistoryTypeText(history.type) }}</p>
                             <p class="card-text m-0">
                                 <span class="badge" [ngClass]="history.isTaken ? 'bg-danger' : 'bg-success'">
-                                    {{ history.isTaken ? 'Taken' : 'Available' }}
+                                    {{ history.isTaken ? ('TAKEN' | translate) : ('AVAILABLE' | translate) }}
                                 </span>
                             </p>
                             <p class="card-text m-0">{{ history.createdDateUtc | date: 'HH:mm:ss - dd/MM/yyyy' }}</p>
-                            <p class="card-text m-0">{{ history.comment || 'No comment' }}</p>
+                            <p class="card-text m-0">{{ history.comment || ('NO_COMMENT' | translate) }}</p>
                         </div>
                     </div>
                 </div>
                 <div class="d-flex justify-content-center" *ngIf="itemHistory.length">
                     <app-pagination class="my-3" [currentPage]="currentPage" [totalPages]="totalPages" (pageChange)="setPage($event)"></app-pagination>
                 </div>
-                <div class="text-secondary" *ngIf="!itemHistory.length">No history.</div>
+                <div class="text-secondary" *ngIf="!itemHistory.length">{{ 'NO_HISTORY' | translate }}</div>
             </div>
         </div>
     </div>

@@ -1,11 +1,11 @@
 <div class="container my-3">
-    <h2 class="mb-4">Your Devices</h2>
+    <h2 class="mb-4">{{ 'YOUR_DEVICES' | translate }}</h2>
     <div class="row mb-4">
         <div class="col d-flex gap-3">
-            <input type="text" class="form-control" placeholder="Enter device ID" [(ngModel)]="deviceIdToActivate">
-            <button class="btn btn-primary" style="width: 190px;" (click)="activateDevice()">
+            <input type="text" class="form-control" placeholder="{{ 'ENTER_DEVICE_ID' | translate }}" [(ngModel)]="deviceIdToActivate">
+            <button class="btn btn-primary" style="white-space: nowrap;" (click)="activateDevice()">
                 <i class="fas fa-power-off me-1"></i>
-                Activate Device
+                {{ 'ACTIVATE_DEVICE' | translate }}
             </button>
         </div>
     </div>
@@ -19,11 +19,11 @@
                         <p class="m-0 text-secondary">{{ getDeviceTypeString(device.type) }}</p>
                     </div>
                     <div *ngIf="device.isEditing">
-                        <input type="text" class="form-control" style="min-width: 250px;" [(ngModel)]="device.name" placeholder="Enter name">
+                        <input type="text" class="form-control" style="min-width: 250px;" [(ngModel)]="device.name" placeholder="{{ 'ENTER_NAME' | translate }}">
                     </div>
                     <div class="d-flex gap-3">
-                        <button *ngIf="isAccessPoint(device)" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#historyModal" (click)="showHistory(device.id)">
-                            <i class="fas fa-history"></i> Show History
+                        <button *ngIf="isAccessPoint(device)" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#historyModal"  (click)="showHistory(device.id)">
+                            <i class="fas fa-history"></i> {{ 'SHOW_HISTORY' | translate }}
                         </button>
                         <button class="btn btn-primary" [class.btn-success]="device.isEditing" (click)="toggleEdit(device)">
                             <i class="fas" [class.fa-edit]="!device.isEditing" [class.fa-save]="device.isEditing"></i>
@@ -36,13 +36,13 @@
             <app-pagination class="my-3" [currentPage]="currentPage" [totalPages]="totalPages" (pageChange)="setPage(+$event)"></app-pagination>
         </div>
     </div>
-    <div class="text-secondary" *ngIf="!devices.length">No devices found.</div>
+    <div class="text-secondary" *ngIf="!devices.length">{{ 'NO_DEVICES_FOUND' | translate }}</div>
 
     <div class="modal" tabindex="-1" id="historyModal" role="dialog">
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Device History</h5>
+                    <h5 class="modal-title">{{ 'DEVICE_HISTORY' | translate }}</h5>
                     <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close" (click)="closeHistory()">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -51,9 +51,9 @@
                     <table class="table" *ngIf="historyData && historyData.length">
                         <thead>
                             <tr>
-                                <th>Scan Type</th>
-                                <th>Result</th>
-                                <th>Date</th>
+                                <th>{{ 'SCAN_TYPE' | translate }}</th>
+                                <th>{{ 'RESULT' | translate }}</th>
+                                <th>{{ 'DATE' | translate }}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -64,7 +64,7 @@
                             </tr>
                         </tbody>
                     </table>
-                    <p class="text-secondary" *ngIf="!historyData || !historyData.length">No history.</p>
+                    <p class="text-secondary" *ngIf="!historyData || !historyData.length">{{ 'NO_HISTORY' | translate }}</p>
                 </div>
             </div>
         </div>

@@ -9,32 +9,32 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav mb-2 mb-lg-0">
                 <li class="nav-item" *ngIf="isUserInGroup() && this.globalUser?.roles?.includes('Owner')">
-                    <a class="nav-link active" href="/group">Group</a>
+                    <a class="nav-link active" href="/group">{{ 'NAVBAR.GROUP' | translate }}</a>
                 </li>
                 <li class="nav-item" *ngIf="!isUserInGroup()">
-                    <a class="nav-link active" href="/creategroup">Create Group</a>
+                    <a class="nav-link active" href="/creategroup">{{ 'NAVBAR.CREATE_GROUP' | translate }}</a>
                 </li>
                 <li class="nav-item" *ngIf="isUserInGroup() && this.globalUser?.roles?.includes('Owner')">
-                    <a class="nav-link" href="/devices">Devices</a>
+                    <a class="nav-link" href="/devices">{{ 'NAVBAR.DEVICES' | translate }}</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/shelves">Shelves</a>
+                <li class="nav-item" *ngIf="isUserInGroup()">
+                    <a class="nav-link" href="/shelves">{{ 'NAVBAR.SHELVES' | translate }}</a>
                 </li>
                 <li class="nav-item" *ngIf="isUserInGroup() && this.globalUser?.roles?.includes('Admin')">
-                    <a class="nav-link" href="/admin/users">Users</a>
+                    <a class="nav-link" href="/admin/users">{{ 'NAVBAR.USERS' | translate }}</a>
                 </li>
             </ul>
 
             <form class="d-flex" style="margin-left: auto; margin-right: auto; width: 350px;" (ngSubmit)="searchItems()">
-                <input class="form-control me-2" type="search" placeholder="Search items" aria-label="Search" [(ngModel)]="searchQuery" name="searchQuery">
+                <input class="form-control me-2" type="search" placeholder="{{ 'NAVBAR.SEARCH_PLACEHOLDER' | translate }}" aria-label="Search" [(ngModel)]="searchQuery" name="searchQuery">
                 <button class="btn btn-outline-success" type="submit">
                     <i class="fa fa-search"></i>
                 </button>
             </form>
 
             <span class="navbar-text d-flex gap-2 nav-item align-items-center">
-                Welcome, {{ globalUser?.email }}
-                <button class="btn btn-link nav-link ms-1" (click)="onLogout()">Logout</button>
+                {{ 'NAVBAR.WELCOME' | translate }} {{ globalUser?.email }}
+                <button class="btn btn-link nav-link ms-1" (click)="onLogout()">{{ 'NAVBAR.LOGOUT' | translate }}</button>
             </span>
         </div>
     </div>

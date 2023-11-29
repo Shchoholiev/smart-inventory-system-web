@@ -1,16 +1,16 @@
 <div class="container mt-4">
-    <h2 class="mb-0">Create Group</h2>
-    <p class="text-secondary mt-0">If you want to join a group provide your email/phone to owner of the group</p>
+    <h2 class="mb-0">{{ 'CREATE_GROUP_TITLE' | translate }}</h2>
+    <p class="text-secondary mt-0">{{ 'CREATE_GROUP_INFO' | translate }}</p>
     <form #groupForm="ngForm" (ngSubmit)="createGroup()">
         <div class="mb-3">
-            <label for="groupName" class="form-label">Name</label>
+            <label for="groupName" class="form-label">{{ 'NAME' | translate }}</label>
             <input type="text" class="form-control" id="name" [(ngModel)]="group.name" name="name" required>
         </div>
         <div class="mb-3">
-            <label for="groupDescription" class="form-label">Description</label>
+            <label for="groupDescription" class="form-label">{{ 'DESCRIPTION' | translate }}</label>
             <textarea class="form-control" id="description" [(ngModel)]="group.description" name="description" rows="3"></textarea>
         </div>
-        <button type="submit" class="btn btn-primary" [disabled]="!groupForm.valid">Create Group</button>
+        <button type="submit" class="btn btn-primary" [disabled]="!groupForm.valid">{{ 'CREATE_GROUP_BUTTON' | translate }}</button>
         <div *ngIf="error" class="text-danger mt-2">{{ error }}</div>
     </form>
 </div>

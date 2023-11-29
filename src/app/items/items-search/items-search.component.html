@@ -1,6 +1,6 @@
 <div class="container">
     <div *ngIf="isLoading" class="loading-spinner text-secondary">
-        <i class="fas fa-spinner fa-spin"></i> Loading...
+        <i class="fas fa-spinner fa-spin"></i> {{ 'LOADING' | translate }}
     </div>
 
     <div *ngIf="!isLoading" class="d-flex flex-column gap-2 my-3">
@@ -12,14 +12,14 @@
                             <div class="d-flex align-items-center gap-3">
                                 <h5 class="card-title m-0">{{ item.name }}</h5>
                                 <span class="badge position" [ngClass]="{'bg-success': !item.isTaken, 'bg-danger': item.isTaken}">
-                                    {{ item.isTaken ? 'Taken' : 'Available' }}
+                                    {{ item.isTaken ? ('TAKEN' | translate) : ('AVAILABLE' | translate) }}
                                 </span>
                             </div>
                             <a href="/items/{{ item.id }}" class="btn btn-primary position" style="font-size: 12px; padding: 5px 8px;">
-                                <i class="fas fa-info-circle"></i> Details
+                                <i class="fas fa-info-circle"></i> {{ 'DETAILS' | translate }}
                             </a>
                         </div>
-                        <p class="card-text m-0 mt-1 text-secondary">{{ item.description || 'No description available' }}</p>
+                        <p class="card-text m-0 mt-1 text-secondary">{{ item.description || ('NO_DESCRIPTION_AVAILABLE' | translate) }}</p>
                     </div>
                 </div>
             </div>
@@ -28,6 +28,6 @@
         <div class="d-flex justify-content-center" *ngIf="items.length">
             <app-pagination class="my-3" [currentPage]="currentPage" [totalPages]="totalPages" (pageChange)="setPage($event)"></app-pagination>
         </div>
-        <div class="text-secondary" *ngIf="!items.length">No items found.</div>
+        <div class="text-secondary" *ngIf="!items.length">{{ 'NO_ITEMS_FOUND' | translate }}</div>
     </div>
 </div>

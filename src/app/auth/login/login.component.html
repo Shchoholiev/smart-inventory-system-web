@@ -3,40 +3,40 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-header d-flex justify-content-between">
-                    <span>Login</span>
-                    <span>Smart Inventory System</span>
+                    <span>{{ 'LOGIN' | translate }}</span>
+                    <span>{{ 'SMART_INVENTORY_SYSTEM' | translate }}</span>
                 </div>
                 <div class="card-body">
                     <form (ngSubmit)="onSubmit()" #form="ngForm">
                         <div class="form-group mb-3">
-                            <label for="email">Email</label>
+                            <label for="email">{{ 'EMAIL' | translate }}</label>
                             <input type="email" class="form-control" id="email" name="email"
                                 [(ngModel)]="loginModel.email" email>
                             <div *ngIf="form.controls['email']?.invalid && (form.controls['email'].dirty || form.controls['email'].touched)"
                                 class="text-danger">
-                                <div *ngIf="form.controls['email'].errors?.['email']">Invalid email format</div>
+                                <div *ngIf="form.controls['email'].errors?.['email']">{{ 'INVALID_EMAIL_FORMAT' | translate }}</div>
                             </div>
                         </div>
                         <div class="form-group mb-3">
-                            <label for="phone">Phone</label>
+                            <label for="phone">{{ 'PHONE' | translate }}</label>
                             <input type="tel" class="form-control" id="phone" name="phone"
                                 [(ngModel)]="loginModel.phone" pattern="[0-9]{10}">
                             <div *ngIf="form.controls['phone']?.invalid && (form.controls['phone'].dirty || form.controls['phone'].touched)"
                                 class="text-danger">
-                                <div *ngIf="form.controls['phone'].errors?.['pattern']">Invalid phone format</div>
+                                <div *ngIf="form.controls['phone'].errors?.['pattern']">{{ 'INVALID_PHONE_FORMAT' | translate }}</div>
                             </div>
                         </div>
                         <div class="form-group mb-3">
-                            <label for="password">Password</label>
+                            <label for="password">{{ 'PASSWORD' | translate }}</label>
                             <input type="password" class="form-control" id="password" name="password"
                                 [(ngModel)]="loginModel.password" required>
                             <div *ngIf="form.controls['password']?.invalid && (form.controls['password'].dirty || form.controls['password'].touched)"
                                 class="text-danger">
-                                <div *ngIf="form.controls['password'].errors?.['required']">Password is required</div>
+                                <div *ngIf="form.controls['password'].errors?.['required']">{{ 'PASSWORD_REQUIRED' | translate }}</div>
                             </div>
                         </div>
                         <button type="submit" class="btn btn-primary"
-                            [disabled]="!form.valid || (!loginModel.email && !loginModel.phone)">Login</button>
+                            [disabled]="!form.valid || (!loginModel.email && !loginModel.phone)">{{ 'LOGIN' | translate }}</button>
                         <div *ngIf="loginError" class="text-danger mt-2">{{ loginError }}</div>
                     </form>
                 </div>

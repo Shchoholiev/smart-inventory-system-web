@@ -1,6 +1,6 @@
 <div class="container">
     <div *ngIf="isLoading" class="loading-spinner text-secondary">
-        <i class="fas fa-spinner fa-spin"></i> Loading...
+        <i class="fas fa-spinner fa-spin"></i> {{ 'LOADING' | translate }}
     </div>
 
     <div *ngIf="!isLoading" class="d-flex flex-column gap-2 my-3">
@@ -14,13 +14,13 @@
             <div class="col">
                 <form (ngSubmit)="addItem()" class="d-flex flex-column gap-3">
                     <div class="form-group">
-                        <input type="text" class="form-control" [(ngModel)]="newItem.name" name="itemName" placeholder="Item name">
+                        <input type="text" class="form-control" [(ngModel)]="newItem.name" name="itemName" placeholder="{{ 'ITEM_NAME' | translate }}">
                     </div>
                     <div class="form-group">
-                        <textarea class="form-control" [(ngModel)]="newItem.description" name="itemDescription" placeholder="Description"></textarea>
+                        <textarea class="form-control" [(ngModel)]="newItem.description" name="itemDescription" placeholder="{{ 'DESCRIPTION' | translate }}"></textarea>
                     </div>
                     <div>
-                        <button type="submit" class="btn btn-primary">Add Item</button>
+                        <button type="submit" class="btn btn-primary">{{ 'ADD_ITEM' | translate }}</button>
                     </div>
                 </form>
             </div>
@@ -36,10 +36,10 @@
                                 <i class="fas fa-info-circle"></i>
                             </a>
                         </div>
-                        <p class="card-text mb-1">{{ item.description || 'No description available' }}</p>
+                        <p class="card-text mb-1">{{ item.description || ('NO_DESCRIPTION_AVAILABLE' | translate) }}</p>
                         <p class="card-text">
                             <span class="badge" [ngClass]="{'badge-success': !item.isTaken, 'badge-danger': item.isTaken}">
-                                {{ item.isTaken ? 'Taken' : 'Available' }}
+                                {{ item.isTaken ? ('TAKEN' | translate) : ('AVAILABLE' | translate) }}
                             </span>
                         </p>
                     </div>
