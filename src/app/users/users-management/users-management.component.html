@@ -21,7 +21,7 @@
                     <td>{{ user.phone }}</td>
                     <td>{{ formatRoles(user.roles) }}</td>
                     <td>
-                        <a href="/admin/users/{{ user.id }}" class="btn btn-primary">Details</a>
+                        <a href="/admin/users/{{ user.id }}?username={{ user.email ?? user.phone }}" class="btn btn-primary">Details</a>
                     </td>
                 </tr>
             </tbody>

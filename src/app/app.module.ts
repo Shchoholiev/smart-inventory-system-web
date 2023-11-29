@@ -21,6 +21,7 @@ import { ShelfDetailComponent } from './shelves/shelf/shelf.component';
 import { ItemDetailsComponent } from './items/item-details/item-details.component';
 import { ItemSearchComponent } from './items/items-search/items-search.component';
 import { UsersManagementComponent } from './users/users-management/users-management.component';
+import { EditUserComponent } from './users/edit-user/edit-user.component';
 
 export function tokenGetter() {
   return localStorage.getItem('accessToken');
@@ -41,7 +42,8 @@ export function tokenGetter() {
     ShelfDetailComponent,
     ItemDetailsComponent,
     ItemSearchComponent,
-    UsersManagementComponent
+    UsersManagementComponent,
+    EditUserComponent
   ],
   imports: [
     BrowserModule,
