@@ -1,0 +1,59 @@
+<div class="container">
+    <div *ngIf="isLoading" class="loading-spinner text-secondary">
+        <i class="fas fa-spinner fa-spin"></i> Loading...
+    </div>
+
+    <div *ngIf="!isLoading" class="d-flex flex-column gap-2 my-3">
+        <div class="row">
+            <div class="col">
+                <div class="d-flex justify-content-between">
+                    <div class="d-flex gap-2 flex-column">
+                        <h2 class="mb-0" *ngIf="!isEditing" class="m-0">Name: {{ user.name }}</h2>
+                        <input *ngIf="isEditing" type="text" [(ngModel)]="user.name" class="form-control mb-2">
+                        <p class="my-0" *ngIf="!isEditing">Email: {{ user.email }}</p>
+                        <input *ngIf="isEditing" type="email" [(ngModel)]="user.email" class="form-control mb-2">
+                        <p class="my-0" *ngIf="!isEditing">Phone: {{ user.phone }}</p>
+                        <input *ngIf="isEditing" type="tel" [(ngModel)]="user.phone" class="form-control mb-2">
+                    </div>
+                    <div class="d-flex gap-3 align-items-start">
+                        <button class="btn btn-primary" [class.btn-success]="isEditing" (click)="toggleEdit()">
+                            <i class="fas" [class.fa-edit]="!isEditing" [class.fa-save]="isEditing"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <h4 class="mt-2">Roles</h4>
+                <div class="d-flex mb-2">
+                    <input type="text" class="form-control me-2" [(ngModel)]="newRole" placeholder="Role name">
+                    <button class="btn btn-primary" style="width: 120px;" (click)="addUserRole()">Add Role</button>
+                </div>
+                <div *ngIf="error" class="text-danger">{{ error }}</div>
+
+                <hr/>
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Role</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let role of user.roles">
+                            <td>{{ role.name }}</td>
+                            <td>
+                                <button class="btn btn-danger btn-sm" (click)="removeUserRole(role.name)">
+                                    <i class="fas fa-trash-alt"></i> Delete
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
