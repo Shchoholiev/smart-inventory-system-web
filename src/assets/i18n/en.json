@@ -73,5 +73,6 @@
     "ROLE_NAME": "Role name",
     "ADD_ROLE": "Add Role",
     "ROLE": "Role",
-    "ACTION": "Action"
+    "ACTION": "Action",
+    "GENERATE_QR_CODE": "Generate QR Code"
 }

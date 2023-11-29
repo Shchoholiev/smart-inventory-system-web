@@ -5,6 +5,8 @@ import { ItemsService } from '../items.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Shelf } from '../../shelves/shelf.model';
 import { ShelvesService } from '../../shelves/shelves.service';
+import { HttpClient } from '@angular/common/http';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-item-details',
@@ -30,7 +32,8 @@ export class ItemDetailsComponent implements OnInit {
     private itemsService: ItemsService,
     private shelvesService: ShelvesService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private http: HttpClient
   ) { }
 
   ngOnInit(): void {
@@ -45,7 +48,7 @@ export class ItemDetailsComponent implements OnInit {
     this.itemsService.getItem(itemId).subscribe(
       item => {
         this.item = item;
-        this.loadShelf(item.shelfId); 
+        this.loadShelf(item.shelfId);
       }
     );
   }
@@ -110,14 +113,14 @@ export class ItemDetailsComponent implements OnInit {
     const newLightStatus = !this.shelf.isLitUp;
 
     this.shelvesService.controlLight(shelfId, this.item.id, newLightStatus).subscribe(
-        updatedShelf => {
-            this.shelf = updatedShelf;
-        }
+      updatedShelf => {
+        this.shelf = updatedShelf;
+      }
     );
   }
 
   deleteItem(): void {
-    if(confirm('Are you sure you want to delete this item?')) {
+    if (confirm('Are you sure you want to delete this item?')) {
       this.itemsService.delete(this.item.id).subscribe(
         () => {
           // Redirect to shelf details page after successful deletion
@@ -125,5 +128,24 @@ export class ItemDetailsComponent implements OnInit {
         }
       );
     }
+  }
+
+  generateAndDownloadQRCode() {
+    const itemId = this.item.id;
+    const apiUrl = 'https://smart-inventory-system-ml.azurewebsites.net/scannable-codes/generate';
+    const body = {
+      data: `https://smart-inventory-system-web.azurewebsites.net/items/${itemId}`,
+      type: "QRCode"
+    };
+
+    this.http.post(apiUrl, body, { responseType: 'blob' }).subscribe({
+      next: response => {
+        const blob = new Blob([response], { type: 'image/jpeg' });
+        saveAs(blob, `QRCode-${itemId}.jpg`);
+      },
+      error: error => {
+        alert(`Error generating QR Code: ${error}`);
+      }
+    });
   }
 }

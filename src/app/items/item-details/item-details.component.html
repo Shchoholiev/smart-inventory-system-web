@@ -9,6 +9,9 @@
                 <div class="d-flex justify-content-between">
                     <h2 class="m-0">{{ item.name }}</h2>
                     <div class="d-flex gap-3">
+                        <button class="btn btn-success" (click)="generateAndDownloadQRCode()">
+                            {{ 'GENERATE_QR_CODE' | translate }}
+                        </button>
                         <button class="btn btn-secondary" (click)="toggleShelfLight()">
                             {{ shelf.isLitUp ? ('TURN_OFF_LIGHT' | translate) : ('TURN_ON_LIGHT' | translate) }}
                         </button>

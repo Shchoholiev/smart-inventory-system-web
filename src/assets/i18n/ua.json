@@ -73,5 +73,6 @@
     "ROLE_NAME": "Назва ролі",
     "ADD_ROLE": "Додати Роль",
     "ROLE": "Роль",
-    "ACTION": "Дія"
+    "ACTION": "Дія",
+    "GENERATE_QR_CODE": "Згенерувати QR код"
 }
