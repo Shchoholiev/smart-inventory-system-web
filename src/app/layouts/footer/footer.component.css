@@ -1,0 +1,25 @@
+.flag-button {
+    padding: 5px 10px; 
+    border: none; 
+    background-color: transparent; 
+    font-size: 12px;
+  }
+  
+  .flag-icon {
+    width: 20px; 
+    height: auto;
+  }
+  
+  
+  footer {
+    padding: 15px 0; 
+  }
+  
+  /* Align items for larger screens */
+  @media (min-width: 992px) {
+    footer .d-flex {
+      flex-direction: row;
+      justify-content: center;
+    }
+  }
+  

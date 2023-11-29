@@ -4,7 +4,7 @@ import { JWT_OPTIONS, JwtModule } from '@auth0/angular-jwt';
 
 import { AppComponent } from './app.component';
 
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { JwtInterceptor } from './auth/jwt.interceptor';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './layouts/header/header.component';
@@ -22,9 +22,15 @@ import { ItemDetailsComponent } from './items/item-details/item-details.componen
 import { ItemSearchComponent } from './items/items-search/items-search.component';
 import { UsersManagementComponent } from './users/users-management/users-management.component';
 import { EditUserComponent } from './users/edit-user/edit-user.component';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
 export function tokenGetter() {
   return localStorage.getItem('accessToken');
+}
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
 }
 
 @NgModule({
@@ -57,6 +63,13 @@ export function tokenGetter() {
         useFactory: () => ({
           tokenGetter
         })
+      }
+    }),
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
       }
     })
   ],

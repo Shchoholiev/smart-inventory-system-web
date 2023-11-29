@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-root',
@@ -11,11 +12,16 @@ export class AppComponent {
 
   public showHeaderAndFooter: boolean = false;
 
-  constructor(private router: Router) {
+  constructor(
+    private router: Router,
+    private translate: TranslateService
+    ) {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         this.showHeaderAndFooter = !event.url.includes('/login') && !event.url.includes('/register');
       }
     });
+    translate.setDefaultLang('en');
+    translate.use('en'); // Set the initial language
   }
 }

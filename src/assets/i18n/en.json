@@ -1,0 +1,14 @@
+{
+    "Group": "Group",
+    "Shchoholiev Serhii": "Shchoholiev Serhii",
+    "NAVBAR": {
+        "GROUP": "Group",
+        "CREATE_GROUP": "Create Group",
+        "DEVICES": "Devices",
+        "SHELVES": "Shelves",
+        "USERS": "Users",
+        "SEARCH_PLACEHOLDER": "Search items",
+        "WELCOME": "Welcome,",
+        "LOGOUT": "Logout"
+    }
+}

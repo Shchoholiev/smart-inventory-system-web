@@ -1,0 +1,14 @@
+{
+    "Group": "Група",
+    "Shchoholiev Serhii": "Сергій Щоголєв",
+    "NAVBAR": {
+        "GROUP": "Група",
+        "CREATE_GROUP": "Створити групу",
+        "DEVICES": "Пристрої",
+        "SHELVES": "Полиці",
+        "USERS": "Користувачі",
+        "SEARCH_PLACEHOLDER": "Пошук предметів",
+        "WELCOME": "Ласкаво просимо,",
+        "LOGOUT": "Вийти"
+      }
+}
