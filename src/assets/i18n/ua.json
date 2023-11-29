@@ -9,7 +9,8 @@
         "USERS": "Користувачі",
         "SEARCH_PLACEHOLDER": "Пошук предметів",
         "WELCOME": "Ласкаво просимо,",
-        "LOGOUT": "Вийти"
+        "LOGOUT": "Вийти",
+        "CREATE_DEVICE": "Створити пристрій"
     },
     "LOADING": "Завантаження...",
     "YOUR_GROUP": "Ваша Група",
@@ -74,5 +75,16 @@
     "ADD_ROLE": "Додати Роль",
     "ROLE": "Роль",
     "ACTION": "Дія",
-    "GENERATE_QR_CODE": "Згенерувати QR код"
+    "GENERATE_QR_CODE": "Згенерувати QR код",
+    "NO_COMMENT": "Коментар відсутній",
+    "CREATE_DEVICE_TITLE": "Створити пристрій",
+    "CREATE_DEVICE_INFO": "Заповніть деталі для створення нового пристрою.",
+    "TYPE": "Тип",
+    "CREATE_DEVICE_BUTTON": "Створити пристрій",
+    "DEVICE_CREATED": "Пристрій успішно створено. Скопіюйте GUID та Access Key для налаштування пристрою.",
+    "Unknown": "Невідомий",
+    "Rack4ShelfController": "Контролер стелажу на 4 полиці",
+    "AccessPoint": "Точка доступу",
+    "GUID": "GUID",
+    "ACCESS_KEY": "Ключ доступу"
 }

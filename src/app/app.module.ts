@@ -24,6 +24,7 @@ import { UsersManagementComponent } from './users/users-management/users-managem
 import { EditUserComponent } from './users/edit-user/edit-user.component';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { DeviceCreationComponent } from './devices/device-creation/device-creation.component';
 
 export function tokenGetter() {
   return localStorage.getItem('accessToken');
@@ -49,7 +50,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     ItemDetailsComponent,
     ItemSearchComponent,
     UsersManagementComponent,
-    EditUserComponent
+    EditUserComponent,
+    DeviceCreationComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,24 @@
+<div class="container mt-4">
+    <h2 class="mb-0">{{ 'CREATE_DEVICE_TITLE' | translate }}</h2>
+    <p class="text-secondary mt-0">{{ 'CREATE_DEVICE_INFO' | translate }}</p>
+    <form #deviceForm="ngForm" (ngSubmit)="createDevice()">
+      <div class="mb-3">
+        <label for="deviceName" class="form-label">{{ 'NAME' | translate }}</label>
+        <input type="text" class="form-control" id="name" [(ngModel)]="device.name" name="name" required>
+      </div>
+      <div class="mb-3">
+        <label for="deviceType" class="form-label">{{ 'TYPE' | translate }}</label>
+        <select class="form-control" id="type" [(ngModel)]="device.type" name="type" required>
+          <option *ngFor="let typeObj of deviceTypes" [ngValue]="typeObj.value">{{ typeObj.text | translate }}</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary" [disabled]="!deviceForm.valid">{{ 'CREATE_DEVICE_BUTTON' | translate }}</button>
+      <div *ngIf="error" class="text-danger mt-2">{{ error }}</div>
+    </form>
+    <div *ngIf="result" class="mt-3">
+      <p>{{ 'DEVICE_CREATED' | translate }}</p>
+      <div><strong>GUID:</strong> {{ result.guid }}</div>
+      <div><strong>Access Key:</strong> {{ result.accessKey }}</div>
+    </div>
+  </div>
+  

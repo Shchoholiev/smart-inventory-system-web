@@ -9,7 +9,8 @@
         "USERS": "Users",
         "SEARCH_PLACEHOLDER": "Search items",
         "WELCOME": "Welcome,",
-        "LOGOUT": "Logout"
+        "LOGOUT": "Logout",
+        "CREATE_DEVICE": "Create Device"
     },
     "LOADING": "Loading...",
     "YOUR_GROUP": "Your Group",
@@ -74,5 +75,16 @@
     "ADD_ROLE": "Add Role",
     "ROLE": "Role",
     "ACTION": "Action",
-    "GENERATE_QR_CODE": "Generate QR Code"
+    "GENERATE_QR_CODE": "Generate QR Code",
+    "NO_COMMENT": "No comment",
+    "CREATE_DEVICE_TITLE": "Create Device",
+    "CREATE_DEVICE_INFO": "Fill in the details to create a new device.",
+    "TYPE": "Type",
+    "CREATE_DEVICE_BUTTON": "Create Device",
+    "DEVICE_CREATED": "Device Created Successfully. Copy device GUID and Access Key for device setup.",
+    "Unknown": "Unknown",
+    "Rack4ShelfController": "Rack 4 Shelf Controller",
+    "AccessPoint": "Access Point",
+    "GUID": "GUID",
+    "ACCESS_KEY": "Access Key"
 }

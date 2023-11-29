@@ -12,7 +12,7 @@ export class DevicesService {
   ) { }
 
   createDevice(device: Device) {
-    return this.apiService.post<Device>('/devices', device);
+    return this.apiService.post<any>('/devices', device);
   }
 
   getDevice(deviceId: string) {
