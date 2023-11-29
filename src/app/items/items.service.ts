@@ -35,4 +35,8 @@ export class ItemsService {
   getItemHistoryPage(itemId: string, page: number, size: number) {
     return this.apiService.get<any>(`/items/${itemId}/history?page=${page}&size=${size}`);
   }
+
+  delete(itemId: string) {
+    return this.apiService.delete(`/items/${itemId}`);
+  }
 }

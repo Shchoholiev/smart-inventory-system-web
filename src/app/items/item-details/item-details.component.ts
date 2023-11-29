@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Item } from '../item.model';
 import { ItemHistory, ItemHistoryType } from '../item-history.model';
 import { ItemsService } from '../items.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Shelf } from '../../shelves/shelf.model';
 import { ShelvesService } from '../../shelves/shelves.service';
 
@@ -29,6 +29,7 @@ export class ItemDetailsComponent implements OnInit {
   constructor(
     private itemsService: ItemsService,
     private shelvesService: ShelvesService,
+    private router: Router,
     private route: ActivatedRoute
   ) { }
 
@@ -114,5 +115,16 @@ export class ItemDetailsComponent implements OnInit {
             this.shelf = updatedShelf;
         }
     );
+  }
+
+  deleteItem(): void {
+    if(confirm('Are you sure you want to delete this item?')) {
+      this.itemsService.delete(this.item.id).subscribe(
+        () => {
+          // Redirect to shelf details page after successful deletion
+          this.router.navigate(['/shelves', this.item.shelfId]);
+        }
+      );
+    }
   }
 }
