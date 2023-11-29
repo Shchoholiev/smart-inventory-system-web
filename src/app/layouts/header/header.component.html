@@ -22,8 +22,8 @@
                 </li>
             </ul>
 
-            <form class="d-flex" style="margin-left: auto; margin-right: auto; width: 350px;">
-                <input class="form-control me-2" type="search" placeholder="Search items" aria-label="Search">
+            <form class="d-flex" style="margin-left: auto; margin-right: auto; width: 350px;" (ngSubmit)="searchItems()">
+                <input class="form-control me-2" type="search" placeholder="Search items" aria-label="Search" [(ngModel)]="searchQuery" name="searchQuery">
                 <button class="btn btn-outline-success" type="submit">
                     <i class="fa fa-search"></i>
                 </button>

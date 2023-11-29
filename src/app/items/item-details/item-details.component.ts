@@ -64,8 +64,7 @@ export class ItemDetailsComponent implements OnInit {
       historyPage => {
         this.itemHistory = historyPage.items;
         this.totalPages = historyPage.totalPages;
-      },
-      error => console.error('Error loading item history', error)
+      }
     );
   }
 

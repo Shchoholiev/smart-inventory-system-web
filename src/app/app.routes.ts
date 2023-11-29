@@ -9,6 +9,7 @@ import { GroupComponent } from './groups/group/group.component';
 import { DevicesComponent } from './devices/devices/devices.component';
 import { ShelfDetailComponent } from './shelves/shelf/shelf.component';
 import { ItemDetailsComponent } from './items/item-details/item-details.component';
+import { ItemSearchComponent } from './items/items-search/items-search.component';
 
 const routes: Routes = [
     { path: '', redirectTo: '/items', pathMatch: 'full' },
@@ -20,6 +21,7 @@ const routes: Routes = [
     { path: 'group', component: GroupComponent, canActivate: [AuthGuard] },
     { path: 'devices', component: DevicesComponent, canActivate: [AuthGuard] },
     { path: 'items/:id', component: ItemDetailsComponent, canActivate: [AuthGuard] },
+    { path: 'search', component: ItemSearchComponent, canActivate: [AuthGuard] },
 ];
 
 

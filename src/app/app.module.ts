@@ -19,6 +19,7 @@ import { DevicesComponent } from './devices/devices/devices.component';
 import { PaginationComponent } from './pagination/pagination.component';
 import { ShelfDetailComponent } from './shelves/shelf/shelf.component';
 import { ItemDetailsComponent } from './items/item-details/item-details.component';
+import { ItemSearchComponent } from './items/items-search/items-search.component';
 
 export function tokenGetter() {
   return localStorage.getItem('accessToken');
@@ -37,7 +38,8 @@ export function tokenGetter() {
     DevicesComponent,
     PaginationComponent,
     ShelfDetailComponent,
-    ItemDetailsComponent
+    ItemDetailsComponent,
+    ItemSearchComponent
   ],
   imports: [
     BrowserModule,
