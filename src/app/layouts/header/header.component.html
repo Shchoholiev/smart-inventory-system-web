@@ -1,13 +1,13 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">
-            <i class="fa fa-boxes-stacked"></i> Smart Inventory System
+            <i class="fa-solid fa-boxes-stacked text-primary"></i> SIS
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <ul class="navbar-nav mb-2 mb-lg-0">
                 <li class="nav-item" *ngIf="isUserInGroup() && this.globalUser?.roles?.includes('Owner')">
                     <a class="nav-link active" href="/group">Group</a>
                 </li>
@@ -22,8 +22,8 @@
                 </li>
             </ul>
 
-            <form class="d-flex" style="margin-left: auto; margin-right: auto; width: 350px;">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <form class="d-flex" style="margin-left: auto; margin-right: auto; width: 350px;" (ngSubmit)="searchItems()">
+                <input class="form-control me-2" type="search" placeholder="Search items" aria-label="Search" [(ngModel)]="searchQuery" name="searchQuery">
                 <button class="btn btn-outline-success" type="submit">
                     <i class="fa fa-search"></i>
                 </button>

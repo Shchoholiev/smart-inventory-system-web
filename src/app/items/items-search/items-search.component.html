@@ -1,0 +1,33 @@
+<div class="container">
+    <div *ngIf="isLoading" class="loading-spinner text-secondary">
+        <i class="fas fa-spinner fa-spin"></i> Loading...
+    </div>
+
+    <div *ngIf="!isLoading" class="d-flex flex-column gap-2 my-3">
+        <div class="row">
+            <div class="col d-flex gap-3 flex-wrap flex-column">
+                <div class="card" style="flex-grow: 1; min-width: 200px;" *ngFor="let item of items">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center gap-3 justify-content-between">
+                            <div class="d-flex align-items-center gap-3">
+                                <h5 class="card-title m-0">{{ item.name }}</h5>
+                                <span class="badge position" [ngClass]="{'bg-success': !item.isTaken, 'bg-danger': item.isTaken}">
+                                    {{ item.isTaken ? 'Taken' : 'Available' }}
+                                </span>
+                            </div>
+                            <a href="/items/{{ item.id }}" class="btn btn-primary position" style="font-size: 12px; padding: 5px 8px;">
+                                <i class="fas fa-info-circle"></i> Details
+                            </a>
+                        </div>
+                        <p class="card-text m-0 mt-1 text-secondary">{{ item.description || 'No description available' }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-center" *ngIf="items.length">
+            <app-pagination class="my-3" [currentPage]="currentPage" [totalPages]="totalPages" (pageChange)="setPage($event)"></app-pagination>
+        </div>
+        <div class="text-secondary" *ngIf="!items.length">No items found.</div>
+    </div>
+</div>

@@ -8,9 +8,11 @@ import { GroupCreationComponent } from './groups/group-creation/group-creation.c
 import { GroupComponent } from './groups/group/group.component';
 import { DevicesComponent } from './devices/devices/devices.component';
 import { ShelfDetailComponent } from './shelves/shelf/shelf.component';
+import { ItemDetailsComponent } from './items/item-details/item-details.component';
+import { ItemSearchComponent } from './items/items-search/items-search.component';
 
 const routes: Routes = [
-    { path: '', redirectTo: '/shelves', pathMatch: 'full' },
+    { path: '', redirectTo: '/items', pathMatch: 'full' },
     { path: 'register', component: RegisterComponent },
     { path: 'login', component: LoginComponent },
     { path: 'shelves', component: ShelvesComponent, canActivate: [AuthGuard] },
@@ -18,6 +20,8 @@ const routes: Routes = [
     { path: 'creategroup', component: GroupCreationComponent, canActivate: [AuthGuard] },
     { path: 'group', component: GroupComponent, canActivate: [AuthGuard] },
     { path: 'devices', component: DevicesComponent, canActivate: [AuthGuard] },
+    { path: 'items/:id', component: ItemDetailsComponent, canActivate: [AuthGuard] },
+    { path: 'search', component: ItemSearchComponent, canActivate: [AuthGuard] },
 ];
 
 
