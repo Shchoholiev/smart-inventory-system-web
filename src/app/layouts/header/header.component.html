@@ -17,7 +17,7 @@
                 <li class="nav-item" *ngIf="isUserInGroup() && this.globalUser?.roles?.includes('Owner')">
                     <a class="nav-link" href="/devices">{{ 'NAVBAR.DEVICES' | translate }}</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" *ngIf="isUserInGroup()">
                     <a class="nav-link" href="/shelves">{{ 'NAVBAR.SHELVES' | translate }}</a>
                 </li>
                 <li class="nav-item" *ngIf="isUserInGroup() && this.globalUser?.roles?.includes('Admin')">

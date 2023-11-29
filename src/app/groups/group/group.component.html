@@ -1,15 +1,15 @@
 <div class="container">
     <div *ngIf="isLoading" class="loading-spinner text-secondary">
-        <i class="fas fa-spinner fa-spin"></i> Loading...
+        <i class="fas fa-spinner fa-spin"></i> {{ 'LOADING' | translate }}
     </div>
 
     <div *ngIf="!isLoading" class="d-flex flex-column gap-2 my-3">
         <div class="row">
             <div class="col">
                 <div class="d-flex justify-content-between">
-                    <h2>Your Group</h2>
+                    <h2>{{ 'YOUR_GROUP' | translate }}</h2>
                     <button class="btn btn-primary" (click)="toggleEdit()">
-                        <i class="fas fa-edit"></i> Edit
+                        <i class="fas fa-edit"></i> {{ 'EDIT' | translate }}
                     </button>
                 </div>
             </div>
@@ -23,27 +23,31 @@
                 <p>{{ group.description }}</p>
             </div>
         </div>
+
         <div class="row" *ngIf="isEditing">
             <div class="col d-flex gap-2 flex-column">
                 <input type="text" [(ngModel)]="group.name" class="form-control">
                 <textarea [(ngModel)]="group.description" class="form-control"></textarea>
                 <div>
                     <button class="btn btn-success" (click)="updateGroup()">
-                        <i class="fas fa-check"></i> Update
+                        <i class="fas fa-check"></i> {{ 'UPDATE' | translate }}
                     </button>
                 </div>
             </div>
         </div>
+
         <hr />
+
         <div class="row">
             <div class="col d-flex gap-3">
-                <input type="text" [(ngModel)]="newUsername" class="form-control" placeholder="Enter email or phone">
-                <button class="btn btn-primary" style="width: 130px" (click)="addUser()">
-                    <i class="fas fa-user-plus"></i> Add User
+                <input type="text" [(ngModel)]="newUsername" class="form-control" placeholder="{{ 'ENTER_EMAIL_PHONE' | translate }}">
+                <button class="btn btn-primary" style="white-space: nowrap;" (click)="addUser()">
+                    <i class="fas fa-user-plus"></i> {{ 'ADD_USER' | translate }}
                 </button>
             </div>
             <div *ngIf="error" class="text-danger mt-2">{{ error }}</div>
         </div>
+
         <div class="row">
             <div class="col d-flex flex-column gap-3">
                 <div class="card" *ngFor="let user of users">
@@ -54,11 +58,11 @@
                             <p class="card-text m-0 text-secondary">{{ user.phone }}</p>
                         </div>
                         <button class="btn btn-danger" *ngIf="globalUser?.id != user.id" (click)="deleteUser(user)">
-                            <i class="fas fa-trash-alt"></i> Delete
+                            <i class="fas fa-trash-alt"></i> {{ 'DELETE' | translate }}
                         </button>
                         <button class="btn btn-warning" *ngIf="globalUser?.id == user.id"
                             (click)="leaveGroup(group.id)">
-                            <i class="fas fa-sign-out-alt"></i> Leave
+                            <i class="fas fa-sign-out-alt"></i> {{ 'LEAVE' | translate }}
                         </button>
                     </div>
                 </div>

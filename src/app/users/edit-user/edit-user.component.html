@@ -1,6 +1,6 @@
 <div class="container">
     <div *ngIf="isLoading" class="loading-spinner text-secondary">
-        <i class="fas fa-spinner fa-spin"></i> Loading...
+        <i class="fas fa-spinner fa-spin"></i> {{ 'LOADING' | translate }}
     </div>
 
     <div *ngIf="!isLoading" class="d-flex flex-column gap-2 my-3">
@@ -8,16 +8,16 @@
             <div class="col">
                 <div class="d-flex justify-content-between">
                     <div class="d-flex gap-2 flex-column">
-                        <h2 class="mb-0" *ngIf="!isEditing" class="m-0">Name: {{ user.name }}</h2>
+                        <h2 class="mb-0" *ngIf="!isEditing" class="m-0">{{ 'NAME' | translate }}: {{ user.name }}</h2>
                         <input *ngIf="isEditing" type="text" [(ngModel)]="user.name" class="form-control mb-2">
-                        <p class="my-0" *ngIf="!isEditing">Email: {{ user.email }}</p>
+                        <p class="my-0" *ngIf="!isEditing">{{ 'EMAIL' | translate }}: {{ user.email }}</p>
                         <input *ngIf="isEditing" type="email" [(ngModel)]="user.email" class="form-control mb-2">
-                        <p class="my-0" *ngIf="!isEditing">Phone: {{ user.phone }}</p>
+                        <p class="my-0" *ngIf="!isEditing">{{ 'PHONE' | translate }}: {{ user.phone }}</p>
                         <input *ngIf="isEditing" type="tel" [(ngModel)]="user.phone" class="form-control mb-2">
                     </div>
                     <div class="d-flex gap-3 align-items-start">
                         <button class="btn btn-primary" [class.btn-success]="isEditing" (click)="toggleEdit()">
-                            <i class="fas" [class.fa-edit]="!isEditing" [class.fa-save]="isEditing"></i>
+                            <i class="fas" [class.fa-edit]="!isEditing" [class.fa-save]="isEditing"></i> {{ isEditing ? ('SAVE' | translate) : ('EDIT' | translate) }}
                         </button>
                     </div>
                 </div>
@@ -26,10 +26,10 @@
 
         <div class="row">
             <div class="col">
-                <h4 class="mt-2">Roles</h4>
+                <h4 class="mt-2">{{ 'ROLES' | translate }}</h4>
                 <div class="d-flex mb-2">
-                    <input type="text" class="form-control me-2" [(ngModel)]="newRole" placeholder="Role name">
-                    <button class="btn btn-primary" style="width: 120px;" (click)="addUserRole()">Add Role</button>
+                    <input type="text" class="form-control me-2" [(ngModel)]="newRole" placeholder="{{ 'ROLE_NAME' | translate }}">
+                    <button class="btn btn-primary" style="white-space: nowrap;" (click)="addUserRole()">{{ 'ADD_ROLE' | translate }}</button>
                 </div>
                 <div *ngIf="error" class="text-danger">{{ error }}</div>
 
@@ -38,8 +38,8 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>Role</th>
-                            <th>Action</th>
+                            <th>{{ 'ROLE' | translate }}</th>
+                            <th>{{ 'ACTION' | translate }}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -47,7 +47,7 @@
                             <td>{{ role.name }}</td>
                             <td>
                                 <button class="btn btn-danger btn-sm" (click)="removeUserRole(role.name)">
-                                    <i class="fas fa-trash-alt"></i> Delete
+                                    <i class="fas fa-trash-alt"></i> {{ 'DELETE' | translate }}
                                 </button>
                             </td>
                         </tr>

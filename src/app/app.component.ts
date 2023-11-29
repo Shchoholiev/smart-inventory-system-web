@@ -21,7 +21,9 @@ export class AppComponent {
         this.showHeaderAndFooter = !event.url.includes('/login') && !event.url.includes('/register');
       }
     });
-    translate.setDefaultLang('en');
-    translate.use('en'); // Set the initial language
+    
+    const savedLanguage = localStorage.getItem('language') || 'en';
+    translate.setDefaultLang(savedLanguage);
+    translate.use(savedLanguage);
   }
 }

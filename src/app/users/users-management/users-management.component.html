@@ -1,17 +1,17 @@
 <div class="container">
     <div *ngIf="isLoading" class="loading-spinner text-secondary">
-        <i class="fas fa-spinner fa-spin"></i> Loading...
+        <i class="fas fa-spinner fa-spin"></i> {{ 'LOADING' | translate }}
     </div>
 
     <div *ngIf="!isLoading" class="d-flex flex-column gap-2 my-3">
         <table class="table">
             <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Phone</th>
-                    <th>Roles</th>
-                    <th>Actions</th>
+                    <th>{{ 'NAME' | translate }}</th>
+                    <th>{{ 'EMAIL' | translate }}</th>
+                    <th>{{ 'PHONE' | translate }}</th>
+                    <th>{{ 'ROLES' | translate }}</th>
+                    <th>{{ 'ACTIONS' | translate }}</th>
                 </tr>
             </thead>
             <tbody>
@@ -21,14 +21,14 @@
                     <td>{{ user.phone }}</td>
                     <td>{{ formatRoles(user.roles) }}</td>
                     <td>
-                        <a href="/admin/users/{{ user.id }}?username={{ user.email ?? user.phone }}" class="btn btn-primary">Details</a>
+                        <a href="/admin/users/{{ user.id }}?username={{ user.email ?? user.phone }}" class="btn btn-primary">{{ 'DETAILS' | translate }}</a>
                     </td>
                 </tr>
             </tbody>
         </table>
 
         <div class="d-flex justify-content-center">
-            <app-pagination class="my-3" [currentPage]="currentPage" [totalPages]="totalPages" (pageChange)="setPage(+$event)"></app-pagination>
+            <app-pagination class="my-3" [currentPage]="currentPage" [totalPages]="totalPages" (pageChange)="setPage($event)"></app-pagination>
         </div>
     </div>
 </div>
