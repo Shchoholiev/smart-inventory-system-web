@@ -19,10 +19,14 @@ export class ItemSearchComponent implements OnInit {
 
   constructor(
     private itemsService: ItemsService, 
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute
+  ) {
     this.groupId = localStorage.getItem('groupId') || '';
   }
 
+  /**
+   * Initializes the component.
+   */
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       this.searchQuery = params['search'] || '';
@@ -31,6 +35,9 @@ export class ItemSearchComponent implements OnInit {
     });
   }
 
+  /**
+   * Searches for items based on the search query.
+   */
   searchItems(): void {
     this.isLoading = true;
     this.itemsService.getItems(this.currentPage, this.pageSize, this.groupId, this.searchQuery).subscribe(
@@ -42,6 +49,10 @@ export class ItemSearchComponent implements OnInit {
     );
   }
 
+  /**
+   * Sets the current page and triggers a search for items.
+   * @param page The page number to set.
+   */
   setPage(page: number): void {
     this.currentPage = page;
     this.searchItems();

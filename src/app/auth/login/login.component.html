@@ -35,8 +35,11 @@
                                 <div *ngIf="form.controls['password'].errors?.['required']">{{ 'PASSWORD_REQUIRED' | translate }}</div>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary"
-                            [disabled]="!form.valid || (!loginModel.email && !loginModel.phone)">{{ 'LOGIN' | translate }}</button>
+                        <div class="d-flex gap-3 align-items-center">
+                            <button type="submit" class="btn btn-primary"
+                                [disabled]="!form.valid || (!loginModel.email && !loginModel.phone)">{{ 'LOGIN' | translate }}</button>
+                            <a href="/register">{{ 'REGISTER' | translate }}</a>
+                        </div>
                         <div *ngIf="loginError" class="text-danger mt-2">{{ loginError }}</div>
                     </form>
                 </div>

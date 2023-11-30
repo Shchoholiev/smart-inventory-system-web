@@ -11,6 +11,10 @@ export class FooterComponent {
       private translate: TranslateService
     ) {}
 
+  /**
+  * Switches the language of the application.
+  * @param language The language code to switch to.
+  */
   switchLanguage(language: string) {
     this.translate.use(language);
     localStorage.setItem('language', language);
