@@ -16,8 +16,8 @@ export class ShelvesService {
     return this.apiService.get<Shelf>(`/shelves/${shelfId}`);
   }
 
-  getShelves(page: number, size: number, groupId: string) {
-    return this.apiService.get<any>(`/shelves?page=${page}&size=${size}&groupId=${groupId}`);
+  getShelves(page: number, size: number, groupId: string, searchQuery: string) {
+    return this.apiService.get<any>(`/shelves?page=${page}&size=${size}&groupId=${groupId}&search=${searchQuery}`);
   }
 
   updateShelf(shelfId: string, shelf: Shelf) {

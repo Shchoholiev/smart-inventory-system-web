@@ -15,6 +15,7 @@ export class ShelvesComponent implements OnInit {
   pageSize = 8;
   totalPages = 1;
   groupId: string;
+  searchQuery: string = '';
 
   constructor(
     private shelvesService: ShelvesService
@@ -27,7 +28,7 @@ export class ShelvesComponent implements OnInit {
   }
 
   setPage(page: number): void {
-    this.shelvesService.getShelves(page, this.pageSize, this.groupId)
+    this.shelvesService.getShelves(page, this.pageSize, this.groupId, this.searchQuery)
       .subscribe(data => {
         this.shelves = data.items;
         this.totalPages = data.totalPages;
@@ -57,5 +58,9 @@ export class ShelvesComponent implements OnInit {
 
   getDeviceIds(): string[] {
     return Object.keys(this.groupedShelves);
+  }
+
+  searchShelves(): void {
+    this.setPage(this.currentPage);
   }
 }

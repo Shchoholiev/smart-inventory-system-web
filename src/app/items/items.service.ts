@@ -15,8 +15,8 @@ export class ItemsService {
     return this.apiService.get<Item>(`/items/${itemId}`);
   }
 
-  getItems(page: number, size: number, groupId: string, search: string) {
-    return this.apiService.get<any>(`/items?page=${page}&size=${size}&groupId=${groupId}&search=${search}`);
+  getItems(page: number, size: number, groupId: string, search: string, isTaken: string, shelfId: string) {
+    return this.apiService.get<any>(`/items?page=${page}&size=${size}&groupId=${groupId}&search=${search}&isTaken=${isTaken}&shelfId=${shelfId}`);
   }
 
   updateShelf(itemId: string, item: Item) {

@@ -3,31 +3,76 @@
         <i class="fas fa-spinner fa-spin"></i> {{ 'LOADING' | translate }}
     </div>
 
-    <div *ngIf="!isLoading" class="d-flex flex-column gap-2 my-3">
-        <div class="row">
-            <div class="col d-flex gap-3 flex-wrap flex-column">
-                <div class="card" style="flex-grow: 1; min-width: 200px;" *ngFor="let item of items">
-                    <div class="card-body">
-                        <div class="d-flex align-items-center gap-3 justify-content-between">
-                            <div class="d-flex align-items-center gap-3">
-                                <h5 class="card-title m-0">{{ item.name }}</h5>
-                                <span class="badge position" [ngClass]="{'bg-success': !item.isTaken, 'bg-danger': item.isTaken}">
-                                    {{ item.isTaken ? ('TAKEN' | translate) : ('AVAILABLE' | translate) }}
-                                </span>
+    <div *ngIf="!isLoading" class="d-flex gap-4 my-3">
+        <div class="d-flex gap-3 flex-column" style="width: 350px;">
+            <h6>Filters</h6>
+            <div>
+                <input class="form-control me-2" type="search" placeholder="{{ 'NAVBAR.SEARCH_PLACEHOLDER' | translate }}" aria-label="Search" [(ngModel)]="searchQuery" name="searchQuery">
+            </div>
+            <div class="d-flex gap-3"> 
+                <p class="mb-0">Is Taken: </p>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" id="isTakenYes" name="isTaken" [(ngModel)]="isTaken" value="true">
+                    <label class="form-check-label" for="isTakenYes">
+                        Yes
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" id="isTakenNo" name="isTaken" [(ngModel)]="isTaken" value="false">
+                    <label class="form-check-label" for="isTakenNo">
+                        No
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" id="isTakenAny" name="isTaken" [(ngModel)]="isTaken" value="">
+                    <label class="form-check-label" for="isTakenAny">
+                        Any
+                    </label>
+                </div>
+            </div>
+            <div class="d-flex flex-column gap-1">
+                <label for="shelf">Choose a Shelf:</label>
+                <input class="form-control" type="search" placeholder="Search Shelf" [(ngModel)]="shelvesSearchQuery" name="shelvesSearchQuery" (keydown.enter)="getShelves()">
+                <select class="form-select mt-2" id="shelf" [(ngModel)]="selectedShelfId" name="selectedShelfId"> 
+                    <option value="">All Shelves</option>
+                    <option *ngFor="let shelf of shelves" [value]="shelf.id">{{ shelf.name }}</option>
+                </select>
+            </div>
+            <div class="d-flex gap-2">
+                <button class="btn btn-outline-success" (click)="searchItems()">
+                    <i class="fa fa-search me-2"></i> Search
+                </button>
+                <button class="btn btn-outline-danger" (click)="clear()">
+                    <i class="fa fa-trash me-2"></i> Clear
+                </button>
+            </div>
+        </div>
+        <div class="d-flex flex-column gap-3 flex-fill">
+            <div class="row">
+                <div class="col d-flex gap-3 flex-wrap flex-column">
+                    <div class="card" style="flex-grow: 1; min-width: 200px;" *ngFor="let item of items">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center gap-3 justify-content-between">
+                                <div class="d-flex align-items-center gap-3">
+                                    <h5 class="card-title m-0">{{ item.name }}</h5>
+                                    <span class="badge position" [ngClass]="{'bg-success': !item.isTaken, 'bg-danger': item.isTaken}">
+                                        {{ item.isTaken ? ('TAKEN' | translate) : ('AVAILABLE' | translate) }}
+                                    </span>
+                                </div>
+                                <a href="/items/{{ item.id }}" class="btn btn-primary position" style="font-size: 12px; padding: 5px 8px;">
+                                    <i class="fas fa-info-circle"></i> {{ 'DETAILS' | translate }}
+                                </a>
                             </div>
-                            <a href="/items/{{ item.id }}" class="btn btn-primary position" style="font-size: 12px; padding: 5px 8px;">
-                                <i class="fas fa-info-circle"></i> {{ 'DETAILS' | translate }}
-                            </a>
+                            <p class="card-text m-0 mt-1 text-secondary">{{ item.description || ('NO_DESCRIPTION_AVAILABLE' | translate) }}</p>
                         </div>
-                        <p class="card-text m-0 mt-1 text-secondary">{{ item.description || ('NO_DESCRIPTION_AVAILABLE' | translate) }}</p>
                     </div>
                 </div>
             </div>
+    
+            <div class="d-flex justify-content-center" *ngIf="items.length">
+                <app-pagination class="my-3" [currentPage]="currentPage" [totalPages]="totalPages" (pageChange)="setPage($event)"></app-pagination>
+            </div>
+            <div class="text-secondary" *ngIf="!items.length">{{ 'NO_ITEMS_FOUND' | translate }}</div>
         </div>
-
-        <div class="d-flex justify-content-center" *ngIf="items.length">
-            <app-pagination class="my-3" [currentPage]="currentPage" [totalPages]="totalPages" (pageChange)="setPage($event)"></app-pagination>
-        </div>
-        <div class="text-secondary" *ngIf="!items.length">{{ 'NO_ITEMS_FOUND' | translate }}</div>
     </div>
 </div>

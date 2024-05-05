@@ -1,6 +1,15 @@
 <div class="container my-3">
     <h2 class="mb-4">{{ 'YOUR_SHELVES' | translate }}</h2>
     <hr />
+    <div>
+        <form class="d-flex" style="margin-left: auto; margin-right: auto;" (ngSubmit)="searchShelves()">
+            <input class="form-control me-2" type="search" placeholder="Enter shelf name" aria-label="Search" [(ngModel)]="searchQuery" name="searchQuery">
+            <button class="btn btn-outline-success" type="submit">
+                <i class="fa fa-search"></i>
+            </button>
+        </form>
+    </div>
+    <hr/>
     <div *ngFor="let deviceId of getDeviceIds()">
         <div class="col d-flex flex-column gap-2">
             <div class="card" *ngFor="let shelf of groupedShelves[deviceId]">

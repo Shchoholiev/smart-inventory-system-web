@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ItemsService } from '../items.service';
 import { Item } from '../item.model';
 import { ActivatedRoute } from '@angular/router';
+import { Shelf } from '../../shelves/shelf.model';
+import { ShelvesService } from '../../shelves/shelves.service';
 
 @Component({
   selector: 'app-items-search',
@@ -16,12 +18,25 @@ export class ItemSearchComponent implements OnInit {
   totalPages = 1;
   groupId: string;
   searchQuery: string = '';
+  isTaken = '';
+
+  shelves: Shelf[] = [];
+  shelvesSearchQuery: string = '';
+  selectedShelfId: string = '';
 
   constructor(
     private itemsService: ItemsService, 
+    private shelvesService: ShelvesService,
     private route: ActivatedRoute
   ) {
     this.groupId = localStorage.getItem('groupId') || '';
+  }
+
+  getShelves(): void {
+    this.shelvesService.getShelves(1, 10, this.groupId, this.shelvesSearchQuery)
+      .subscribe(data => {
+        this.shelves = data.items;
+      });
   }
 
   /**
@@ -33,6 +48,7 @@ export class ItemSearchComponent implements OnInit {
       this.currentPage = 1; 
       this.searchItems();
     });
+    this.getShelves();
   }
 
   /**
@@ -40,13 +56,14 @@ export class ItemSearchComponent implements OnInit {
    */
   searchItems(): void {
     this.isLoading = true;
-    this.itemsService.getItems(this.currentPage, this.pageSize, this.groupId, this.searchQuery).subscribe(
-      data => {
-        this.items = data.items;
-        this.totalPages = data.totalPages;
-        this.isLoading = false;
-      }
-    );
+    this.itemsService.getItems(this.currentPage, this.pageSize, this.groupId, this.searchQuery, this.isTaken, this.selectedShelfId)
+      .subscribe(
+        data => {
+          this.items = data.items;
+          this.totalPages = data.totalPages;
+          this.isLoading = false;
+        }
+      );
   }
 
   /**
@@ -55,6 +72,13 @@ export class ItemSearchComponent implements OnInit {
    */
   setPage(page: number): void {
     this.currentPage = page;
+    this.searchItems();
+  }
+
+  clear(): void {
+    this.searchQuery = '';
+    this.selectedShelfId = '';
+    this.isTaken = '';
     this.searchItems();
   }
 }
