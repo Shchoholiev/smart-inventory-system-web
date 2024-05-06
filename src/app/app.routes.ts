@@ -13,6 +13,10 @@ import { ItemSearchComponent } from './items/items-search/items-search.component
 import { UsersManagementComponent } from './users/users-management/users-management.component';
 import { EditUserComponent } from './users/edit-user/edit-user.component';
 import { DeviceCreationComponent } from './devices/device-creation/device-creation.component';
+import { ItemsPopularityComponent } from './statistics/items-popularity/items-popularity.component';
+import { ShelvesByItemsCountComponent } from './statistics/shelves-by-items-count/shelves-by-items-count.component';
+import { UsersActivityComponent } from './statistics/users-activity/users-activity.component';
+import { UsersByItemsTakenComponent } from './statistics/users-by-items-taken/users-by-items-taken.component';
 
 const routes: Routes = [
     { path: '', redirectTo: '/items', pathMatch: 'full' },
@@ -29,8 +33,11 @@ const routes: Routes = [
     { path: 'search', component: ItemSearchComponent, canActivate: [AuthGuard] },
     { path: 'admin/users', component: UsersManagementComponent, canActivate: [AuthGuard] },
     { path: 'admin/users/:id', component: EditUserComponent, canActivate: [AuthGuard] },
+    { path: 'statistics/items-popularity', component: ItemsPopularityComponent, canActivate: [AuthGuard] },
+    { path: 'statistics/shelves-items-count', component: ShelvesByItemsCountComponent, canActivate: [AuthGuard] },
+    { path: 'statistics/users-activity', component: UsersActivityComponent, canActivate: [AuthGuard] },
+    { path: 'statistics/users-by-items-taken', component: UsersByItemsTakenComponent, canActivate: [AuthGuard] },
 ];
-
 
 @NgModule({
   imports: [

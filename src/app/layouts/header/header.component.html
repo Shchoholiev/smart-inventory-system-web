@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" routerLink="/statistics">
             <i class="fa-solid fa-boxes-stacked text-primary"></i> SIS
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -9,22 +9,33 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav mb-2 mb-lg-0">
                 <li class="nav-item" *ngIf="isUserInGroup() && this.globalUser?.roles?.includes('Owner')">
-                    <a class="nav-link active" href="/group">{{ 'NAVBAR.GROUP' | translate }}</a>
+                    <a class="nav-link active" routerLink="/group">{{ 'NAVBAR.GROUP' | translate }}</a>
                 </li>
                 <li class="nav-item" *ngIf="!isUserInGroup()">
-                    <a class="nav-link active" href="/creategroup">{{ 'NAVBAR.CREATE_GROUP' | translate }}</a>
+                    <a class="nav-link active" routerLink="/creategroup">{{ 'NAVBAR.CREATE_GROUP' | translate }}</a>
                 </li>
                 <li class="nav-item" *ngIf="isUserInGroup() && this.globalUser?.roles?.includes('Owner')">
-                    <a class="nav-link" href="/devices">{{ 'NAVBAR.DEVICES' | translate }}</a>
+                    <a class="nav-link" routerLink="/devices">{{ 'NAVBAR.DEVICES' | translate }}</a>
                 </li>
                 <li class="nav-item" *ngIf="isUserInGroup()">
-                    <a class="nav-link" href="/shelves">{{ 'NAVBAR.SHELVES' | translate }}</a>
+                    <a class="nav-link" routerLink="/shelves">{{ 'NAVBAR.SHELVES' | translate }}</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Statistics
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <li><a class="dropdown-item" routerLink="/statistics/items-popularity">Items Popularity</a></li>
+                        <li><a class="dropdown-item" routerLink="/statistics/shelves-items-count">Shelves by Item count</a></li>
+                        <li><a class="dropdown-item" routerLink="/statistics/users-activity">Users Activity</a></li>
+                        <li><a class="dropdown-item" routerLink="/statistics/users-by-items-taken">Users by Items taken</a></li>
+                    </ul>
                 </li>
                 <li class="nav-item" *ngIf="this.globalUser?.roles?.includes('Admin')">
-                    <a class="nav-link" href="/admin/users">{{ 'NAVBAR.USERS' | translate }}</a>
+                    <a class="nav-link" routerLink="/admin/users">{{ 'NAVBAR.USERS' | translate }}</a>
                 </li>
                 <li class="nav-item" *ngIf="this.globalUser?.roles?.includes('Admin')">
-                    <a class="nav-link" href="/admin/createdevice">{{ 'NAVBAR.CREATE_DEVICE' | translate }}</a>
+                    <a class="nav-link" routerLink="/admin/createdevice">{{ 'NAVBAR.CREATE_DEVICE' | translate }}</a>
                 </li>
             </ul>
 
