@@ -1,27 +1,98 @@
-# SmartInventorySystemWeb
+# smart-inventory-system-web
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.3.
+A web-based inventory management system built with Angular to facilitate device, group, shelf, and item management along with user authentication and statistical insights.
 
-## Development server
+## Table of Contents
+- [Features](#features)
+- [Stack](#stack)
+- [Installation](#installation)
+  - [Prerequisites](#prerequisites)
+  - [Setup Instructions](#setup-instructions)
+- [Configuration](#configuration)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Features
+- User registration, login, and JWT-based authentication.
+- Group management: create groups, add/remove users, and leave groups.
+- Device management: create, activate, edit, and view device history.
+- Shelf management: create, view, edit shelves and control shelf lighting.
+- Item management: add, edit, delete items, generate QR codes, and view item history.
+- Search and filter capabilities for items and shelves.
+- Pagination support across listing views.
+- Multi-language support with English and Ukrainian translations.
+- Detailed statistics including:
+  - Items popularity by actions count.
+  - Shelves grouped by item count.
+  - User activity.
+  - Users by items taken.
+- Responsive UI with Bootstrap styling.
 
-## Code scaffolding
+## Stack
+- **Frontend Framework:** Angular 17
+- **Language:** TypeScript, HTML, CSS
+- **Authentication:** JSON Web Tokens with @auth0/angular-jwt
+- **Internationalization:** @ngx-translate/core & http-loader
+- **Styling:** Bootstrap 5, FontAwesome for icons
+- **Build & Dev Tools:** Angular CLI, Karma for unit tests, Visual Studio Code devcontainers
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Installation
 
-## Build
+### Prerequisites
+- Node.js (>= 18.x recommended)
+- npm (comes with Node.js)
+- Angular CLI (install globally):  
+  ```bash
+  npm install -g @angular/cli
+  ```
+- Git (to clone the repository)
+- Optional: Visual Studio Code with recommended extensions
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+### Setup Instructions
 
-## Running unit tests
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Shchoholiev/smart-inventory-system-web.git
+   cd smart-inventory-system-web
+   ```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-## Running end-to-end tests
+3. Serve the application locally:
+   ```bash
+   npm start
+   ```
+   This will start the Angular development server. Navigate to `http://localhost:4200/` in your web browser.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+4. To build the production bundle:
+   ```bash
+   npm run build
+   ```
+   The build output will be in the `dist/smart-inventory-system-web/` directory.
 
-## Further help
+5. To run unit tests:
+   ```bash
+   npm test
+   ```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Configuration
+
+The frontend depends on a backend API service URL which is configured via environment variables.
+
+- Edit the environment file located at:  
+  `src/environments/environment.ts`
+
+- Example configuration:
+  ```typescript
+  export const environment = {
+    production: false,
+    apiUrl: 'https://your-api-server.com/api'
+  };
+  ```
+
+- Replace `'https://your-api-server.com/api'` with the actual backend API base URL.
+
+- The authentication token is stored in `localStorage` under the key `accessToken`.
+
+- Language preferences are saved in the browser's local storage under the key `language`.
